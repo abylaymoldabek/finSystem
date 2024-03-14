@@ -1,0 +1,112 @@
+definitions:
+  domain.Account:
+    properties:
+      balance:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  domain.Transaction:
+    properties:
+      account_id:
+        type: integer
+      account2_id:
+        type: integer
+      date:
+        type: string
+      group:
+        type: string
+      id:
+        type: integer
+      value:
+        type: number
+    type: object
+host: localhost:8088
+info:
+  contact: {}
+  description: This is a sample API for managing products.
+  title: Tag Products API
+  version: "1.0"
+paths:
+  /accounts:
+    get:
+      description: Get a list of all accounts in the system
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of accounts
+          schema:
+            items:
+              $ref: '#/definitions/domain.Account'
+            type: array
+      summary: Get all accounts
+      tags:
+      - tags
+    post:
+      consumes:
+      - application/json
+      description: Add a new account to the system
+      parameters:
+      - description: Account object to be added
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Account'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Account added successfully
+          schema:
+            type: string
+      summary: Add a new account
+      tags:
+      - tags
+  /transactions:
+    post:
+      consumes:
+      - application/json
+      description: Add a new transaction to the system
+      parameters:
+      - description: Account object to be added
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Transaction'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Transaction added successfully
+          schema:
+            type: string
+      summary: Add a new transaction
+      tags:
+      - tags
+  /transactions/{account_id}:
+    get:
+      description: Get a list of all account transactions in the system
+      parameters:
+      - description: Account ID
+        in: path
+        name: account_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List of account Transactions
+          schema:
+            items:
+              $ref: '#/definitions/domain.Transaction'
+            type: array
+      summary: Get all account transactions
+      tags:
+      - tags
+swagger: "2.0"

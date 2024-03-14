@@ -1,0 +1,11 @@
+{
+    "DBConfig": {
+      "Host": "HOST",
+      "User": "USER",
+      "Password": "PASSWORD",
+      "DBName": "DBName"
+    },
+    "ServerConfig": {
+      "Port": "8088"
+    }
+  }
