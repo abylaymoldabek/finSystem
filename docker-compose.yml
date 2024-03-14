@@ -10,7 +10,8 @@ services:
     ports:
       - "5432:5432"
   app:
-    build: .
+    build:
+        dockerfile: Dockerfile
     ports:
       - "8088:8088"
     depends_on:
